@@ -10,98 +10,105 @@ const books = [
     title: "Bhagavad Gita",
     format: "PDF",
     size: "4.2 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/51p2HdeEZoL._AC_UF1000,1000_QL80_.jpg",
-    link: "https://iskconmangaluru.com/wp-content/uploads/2021/04/Telugu-Bhagavad-gita-His-Divine-Grace-AC-Bhaktivedanta-Swami-Prabhupada.pdf"
+    thumbnail: "https://ice.lol/hYrdYn",
+    link: "https://ice.lol/RWZvQF"
   },
   {
     title: "Ramayana",
     format: "PDF",
     size: "5.7 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/51p2HdeEZoL._AC_UF1000,1000_QL80_.jpg",
-    link: "https://drive.google.com/uc?id=1Ramayana456"
+    thumbnail: "https://ice.lol/Oahbaw",
+    link: "https://ice.lol/sXAgYo"
   },
   {
     title: "Mahabharata",
     format: "PDF",
     size: "8.5 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/91HwvjV3FbL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/RnwFkD",
     link: "https://drive.google.com/uc?id=1Mahabharata789"
   },
   {
     title: "Vedas",
     format: "PDF",
     size: "12.4 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/51y4yJ0MKoL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/zbbxom",
     link: "https://drive.google.com/uc?id=1Vedas321"
   },
   {
     title: "Upanishads",
     format: "PDF",
     size: "4.8 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/81qvj5RWADL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/TCjcMm",
     link: "https://drive.google.com/uc?id=1Upanishads654"
   },
   {
     title: "Yoga Sutras",
     format: "PDF",
     size: "2.3 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/81o+xdnFOfL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/zDLNQh",
     link: "https://drive.google.com/uc?id=1YogaSutras987"
   },
   {
     title: "Shiva Purana",
     format: "PDF",
     size: "10.2 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/91YTInffU7L._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/UnwUMX",
     link: "https://drive.google.com/uc?id=1ShivaPurana567"
   },
   {
     title: "Sri Vishnu Sahasranamam",
     format: "PDF",
     size: "3.1 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/91HVz4AlMjL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/KUakBC",
     link: "https://drive.google.com/uc?id=1VishnuSahasranamam444"
   },
   {
     title: "Devi Mahatmyam",
     format: "PDF",
     size: "3.7 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/51f4CTjO8jL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/wXynjN",
     link: "https://drive.google.com/uc?id=1DeviMahatmyam111"
   },
   {
     title: "Srimad Bhagavatam",
     format: "PDF",
     size: "15.5 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/81FfY94U7nL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/DwnODq",
     link: "https://drive.google.com/uc?id=1SrimadBhagavatam222"
   },
   {
     title: "Lalita Sahasranamam",
     format: "PDF",
     size: "2.6 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/91mUgY-RGpL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/OHvfor",
     link: "https://drive.google.com/uc?id=1LalitaSahasranamam333"
   },
   {
     title: "Hanuman Chalisa",
     format: "PDF",
     size: "1.1 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/81Tf5uymlUL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/YaEgzK",
     link: "https://drive.google.com/uc?id=1HanumanChalisa777"
   },
   {
     title: "Garuda Purana",
     format: "PDF",
     size: "7.9 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/51YfA9mXesL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/WFhpXv",
     link: "https://drive.google.com/uc?id=1GarudaPurana888"
   },
   {
     title: "Narada Bhakti Sutra",
     format: "PDF",
     size: "3.4 MB",
-    thumbnail: "https://m.media-amazon.com/images/I/81gHzKNnEHL._AC_UF1000,1000_QL80_.jpg",
+    thumbnail: "https://ice.lol/LMHpfA",
+    link: "https://drive.google.com/uc?id=1NaradaBhakti666"
+  },
+  {
+    title: "Hanuman Sundhara Kanda",
+    format: "PDF",
+    size: "3.4 MB",
+    thumbnail: "https://ice.lol/waBWFX",
     link: "https://drive.google.com/uc?id=1NaradaBhakti666"
   }
 ];
