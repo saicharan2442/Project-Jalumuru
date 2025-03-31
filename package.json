@@ -1,9 +1,10 @@
 {
-  "homepage": "https://saicharan2442.github.io/Project-Jalumuru"
+  
   "name": "vite_react_shadcn_ts",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://saicharan2442.github.io/Project-Jalumuru",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,6 +12,8 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  
+
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
