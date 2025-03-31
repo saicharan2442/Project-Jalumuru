@@ -12,12 +12,24 @@ const TrustLicencePage = () => {
           <p className="text-lg mb-8">
             View official trust licences, certifications, and legal documents related to Jalumuru Hill temples.
           </p>
+
+          {/* Image Container */}
           <div className="bg-white rounded-lg shadow-md p-8 border border-gold-light/30 flex justify-center items-center">
-            {/* Image in A4 Size */}
+            
+            {/* A4 Size Image with Mobile Responsiveness */}
             <img
               src="/src/pages/images/fake.jpg" 
               alt="Trust Licence Document"
-              className="w-[210mm] h-[297mm] object-cover shadow-lg"
+              className="w-full max-w-[210mm] h-auto md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] shadow-lg rounded-md"
+            />
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-8 border border-gold-light/30 flex justify-center items-center">
+            
+            {/* A4 Size Image with Mobile Responsiveness */}
+            <img
+              src="/src/pages/images/fake.jpg" 
+              alt="Trust Licence Document"
+              className="w-full max-w-[210mm] h-auto md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] shadow-lg rounded-md"
             />
           </div>
         </div>

@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const donors = [
-  { name: "Ravi Kumar", village: "Jalumuru", district: "Srikakulam", amount: "₹50,000" },
+  { name: "Ravi kiran", village: "Jalumuru", district: "Srikakulam", amount: "₹50,000" },
   { name: "Lakshmi Prasad", village: "Pathapatnam", district: "Vizianagaram", amount: "₹75,000" },
   { name: "Sita Reddy", village: "Amadalavalasa", district: "Srikakulam", amount: "₹1,00,000" },
   { name: "Venkat Rao", village: "Narayanapuram", district: "Vizianagaram", amount: "₹60,000" },
