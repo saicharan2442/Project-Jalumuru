@@ -13,14 +13,13 @@
   "type": "module",
   
 
-  "homepage": "https://saicharan2442.github.io/Project-Jalumuru",
+
   
 
   "scripts": {
   
 
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist",
+
 
   "dev": "vite",
   
