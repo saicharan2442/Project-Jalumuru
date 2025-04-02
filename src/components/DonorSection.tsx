@@ -33,7 +33,35 @@ const donors = [
     village: "Rajamundry",
     district: "East Godavari",
     amount: "₹31,000",
+  },{
+    id: 1,
+    name: "Rajesh Kumar",
+    village: "Jalumuru",
+    district: "Srikakulam",
+    amount: "₹51,000",
   },
+  {
+    id: 2,
+    name: "Sita Lakshmi",
+    village: "Visakhapatnam",
+    district: "Visakhapatnam",
+    amount: "₹21,000",
+  },
+  {
+    id: 3,
+    name: "Venkat Rao",
+    village: "Kakinada",
+    district: "East Godavari",
+    amount: "₹11,000",
+  },
+  {
+    id: 4,
+    name: "Padma Reddy",
+    village: "Rajamundry",
+    district: "East Godavari",
+    amount: "₹31,000",
+  },
+  
 ];
 
 const DonorSection = () => {
