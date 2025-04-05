@@ -1,113 +1,71 @@
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-// Mock data for donors
-const donors = [
-  {
-    id: 1,
-    name: "Rajesh Kumar",
-    village: "Jalumuru",
-    district: "Srikakulam",
-    amount: "₹51,000",
-  },
-  {
-    id: 2,
-    name: "Sita Lakshmi",
-    village: "Visakhapatnam",
-    district: "Visakhapatnam",
-    amount: "₹21,000",
-  },
-  {
-    id: 3,
-    name: "Venkat Rao",
-    village: "Kakinada",
-    district: "East Godavari",
-    amount: "₹11,000",
-  },
-  {
-    id: 4,
-    name: "Padma Reddy",
-    village: "Rajamundry",
-    district: "East Godavari",
-    amount: "₹31,000",
-  },{
-    id: 1,
-    name: "Rajesh Kumar",
-    village: "Jalumuru",
-    district: "Srikakulam",
-    amount: "₹51,000",
-  },
-  {
-    id: 2,
-    name: "Sita Lakshmi",
-    village: "Visakhapatnam",
-    district: "Visakhapatnam",
-    amount: "₹21,000",
-  },
-  {
-    id: 3,
-    name: "Venkat Rao",
-    village: "Kakinada",
-    district: "East Godavari",
-    amount: "₹11,000",
-  },
-  {
-    id: 4,
-    name: "Padma Reddy",
-    village: "Rajamundry",
-    district: "East Godavari",
-    amount: "₹31,000",
-  },
-  
-];
+type Donor = {
+  id: number;
+  Name: string;
+  village: string;
+  district: string;
+  email: string;
+  phone_number: string;
+  donated: string;
+};
 
-const DonorSection = () => {
+const DonorSection: React.FC = () => {
+  const [donors, setDonors] = useState<Donor[]>([]);
+  const navigate = useNavigate();
+
+  const fetchDonors = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/donars");
+      const data = await response.json();
+      const latestNine = data.slice(0, 9); // Show only latest 9
+      setDonors(latestNine);
+    } catch (error) {
+      console.error("Error fetching donors:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDonors();
+    const interval = setInterval(fetchDonors, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="py-12 bg-white">
-      <div className="temple-container">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <h2 className="section-title">Our Generous Donors</h2>
-          <Link to="/donors">
-            <Button variant="outline" className="border-gold hover:bg-gold-light/20 text-gold-dark">
-              Join as Donor
-            </Button>
-          </Link>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {donors.map((donor) => (
-            <Card key={donor.id} className="card-hover border-gold-light/30">
-              <CardContent className="p-6">
-                <h3 className="font-playfair text-xl font-semibold text-gold-dark mb-2">{donor.name}</h3>
-                <div className="space-y-1 text-sm">
-                  <p className="flex justify-between">
-                    <span className="text-muted-foreground">Village:</span>
-                    <span className="font-medium">{donor.village}</span>
-                  </p>
-                  <p className="flex justify-between">
-                    <span className="text-muted-foreground">District:</span>
-                    <span className="font-medium">{donor.district}</span>
-                  </p>
-                  <p className="flex justify-between mt-4 pt-2 border-t border-gold-light/30">
-                    <span className="text-muted-foreground">Donated:</span>
-                    <span className="font-bold text-temple-brown">{donor.amount}</span>
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        
-        <div className="flex justify-center mt-8">
-          <Link to="/donors">
-            <Button variant="ghost" className="text-gold-dark hover:text-gold-dark hover:bg-gold-light/20">
-              View All Donors
-            </Button>
-          </Link>
-        </div>
+    <div className="p-6">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-yellow-800">Latest Donors</h2>
+        <Button
+          onClick={() => navigate("/donors")}
+          className="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg px-4 py-2 transition-all"
+        >
+          See All Donors →
+        </Button>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {donors.map((donor) => (
+          <Card
+            key={donor.id}
+            className="bg-yellow-50 border-2 border-yellow-300 rounded-2xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-transform duration-300 ease-in-out"
+          >
+            <CardContent className="p-5">
+              <h2 className="text-xl font-bold text-yellow-700">{donor.Name}</h2>
+              <p className="text-sm text-gray-700">
+                {donor.village}, {donor.district}
+              </p>
+              <p className="text-sm text-gray-600">
+                {donor.email} | {donor.phone_number}
+              </p>
+              <p className="text-md font-semibold text-green-700 mt-3">
+                Donated: {donor.donated}
+              </p>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );
