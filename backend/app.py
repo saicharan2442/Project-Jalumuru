@@ -32,6 +32,15 @@ def get_events():
     data = [dict(zip(col_names, row)) for row in rows]
     return jsonify(data)
 
+@app.route('/temples', methods=['GET'])
+def get_temples():
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM temples ORDER BY id DESC")
+    rows = cursor.fetchall()
+    col_names = [desc[0] for desc in cursor.description]
+    data = [dict(zip(col_names, row)) for row in rows]
+    return jsonify(data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
