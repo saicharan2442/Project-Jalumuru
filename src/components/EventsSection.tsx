@@ -40,7 +40,7 @@ const EventsSection = () => {
               variant="outline"
               className="border-gold hover:bg-gold-light/20 text-gold-dark"
             >
-              Calendar View
+              View All Events >>
             </Button>
           </Link>
         </div>
@@ -77,16 +77,7 @@ const EventsSection = () => {
           </div>
         )}
 
-        <div className="flex justify-center mt-8">
-          <Link to="/events">
-            <Button
-              variant="ghost"
-              className="text-gold-dark hover:text-gold-dark hover:bg-gold-light/20"
-            >
-              See All Events
-            </Button>
-          </Link>
-        </div>
+        
       </div>
     </div>
   );
