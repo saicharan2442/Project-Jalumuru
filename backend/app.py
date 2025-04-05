@@ -32,12 +32,6 @@ def get_events():
     data = [dict(zip(col_names, row)) for row in rows]
     return jsonify(data)
 
-@app.route('/ebooks', methods=['GET'])
-def get_ebooks():
-    cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM ebooks ORDER BY id DESC")
-    ebooks = cursor.fetchall()
-    return jsonify(ebooks)
 
 if __name__ == '__main__':
     app.run(debug=True)
