@@ -44,7 +44,7 @@ const DonorSection: React.FC = () => {
         <div className="temple-container px-4 sm:px-8">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-yellow-800">All Donors</h1>
-            <h2>
+            <h2 className="text-lg mb-6 text-center">
             Stay updated with Honoring Our Generous Donors to Jalumuru Hill temples.
           </h2>
             <input

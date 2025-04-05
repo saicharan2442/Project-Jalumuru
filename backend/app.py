@@ -22,6 +22,15 @@ def get_donars():
     data = [dict(zip(col_names, row)) for row in rows]
     return jsonify(data)
 
+@app.route('/ebooks', methods=['GET'])
+def get_ebooks():
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM ebooks ORDER BY id DESC")
+    rows = cursor.fetchall()
+    col_names = [desc[0] for desc in cursor.description]
+    data = [dict(zip(col_names, row)) for row in rows]
+    return jsonify(data)
+
 
 @app.route('/events', methods=['GET'])
 def get_events():

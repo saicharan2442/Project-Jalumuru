@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -35,38 +34,44 @@ const stories = [
 
 const StoriesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const visibleStories = 3; // Number of stories visible at once on desktop
-  
+  const visibleStories = 3;
+
   const nextSlide = () => {
-    setActiveIndex((prevIndex) => 
+    setActiveIndex((prevIndex) =>
       prevIndex + 1 >= stories.length ? 0 : prevIndex + 1
     );
   };
-  
+
   const prevSlide = () => {
-    setActiveIndex((prevIndex) => 
+    setActiveIndex((prevIndex) =>
       prevIndex - 1 < 0 ? stories.length - 1 : prevIndex - 1
     );
   };
-  
-  // Create a circular array of stories based on the active index
+
   const displayedStories = [...stories.slice(activeIndex), ...stories.slice(0, activeIndex)]
     .slice(0, visibleStories);
 
   return (
     <div className="py-12 bg-white">
       <div className="temple-container">
-        <h2 className="section-title">Rare Telugu Gods Stories</h2>
-        
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="section-title">Rare Telugu Gods Stories</h2>
+          <Link to="/ebooks">
+            <Button className="bg-gold hover:bg-gold-dark text-white">
+              Explore All eBooks
+            </Button>
+          </Link>
+        </div>
+
         <div className="relative">
-          {/* Mobile view - single story slider */}
+          {/* Mobile view */}
           <div className="md:hidden">
             <Card className="border-gold-light/30">
               <CardContent className="p-0">
                 <div className="relative">
-                  <img 
-                    src={stories[activeIndex].image} 
-                    alt={stories[activeIndex].title} 
+                  <img
+                    src={stories[activeIndex].image}
+                    alt={stories[activeIndex].title}
                     className="w-full h-48 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -83,30 +88,28 @@ const StoriesSection = () => {
                 </div>
               </CardContent>
             </Card>
-            
+
             <div className="flex justify-center mt-4 space-x-2">
               {stories.map((_, index) => (
                 <button
                   key={index}
-                  className={`h-2 w-2 rounded-full ${
-                    index === activeIndex ? "bg-gold" : "bg-gold-light/30"
-                  }`}
+                  className={`h-2 w-2 rounded-full ${index === activeIndex ? "bg-gold" : "bg-gold-light/30"}`}
                   onClick={() => setActiveIndex(index)}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
           </div>
-          
-          {/* Desktop view - multi-story carousel */}
+
+          {/* Desktop view */}
           <div className="hidden md:grid md:grid-cols-3 gap-6">
             {displayedStories.map((story) => (
               <Card key={story.id} className="card-hover border-gold-light/30">
                 <CardContent className="p-0">
                   <div className="relative">
-                    <img 
-                      src={story.image} 
-                      alt={story.title} 
+                    <img
+                      src={story.image}
+                      alt={story.title}
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -125,40 +128,40 @@ const StoriesSection = () => {
               </Card>
             ))}
           </div>
-          
-          {/* Navigation buttons for desktop */}
+
+          {/* Navigation buttons desktop */}
           <div className="hidden md:block">
-            <Button 
-              variant="outline" 
-              size="icon" 
+            <Button
+              variant="outline"
+              size="icon"
               className="absolute -left-4 top-1/2 transform -translate-y-1/2 bg-white border-gold-light/30 hover:bg-gold-light/20 z-10"
               onClick={prevSlide}
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="icon" 
+            <Button
+              variant="outline"
+              size="icon"
               className="absolute -right-4 top-1/2 transform -translate-y-1/2 bg-white border-gold-light/30 hover:bg-gold-light/20 z-10"
               onClick={nextSlide}
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
-          
-          {/* Navigation buttons for mobile */}
+
+          {/* Mobile nav buttons */}
           <div className="md:hidden flex justify-center mt-6 space-x-4">
-            <Button 
-              variant="outline" 
-              size="icon" 
+            <Button
+              variant="outline"
+              size="icon"
               className="border-gold-light/30 hover:bg-gold-light/20"
               onClick={prevSlide}
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="icon" 
+            <Button
+              variant="outline"
+              size="icon"
               className="border-gold-light/30 hover:bg-gold-light/20"
               onClick={nextSlide}
             >

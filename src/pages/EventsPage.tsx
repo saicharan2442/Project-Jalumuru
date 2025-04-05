@@ -28,7 +28,7 @@ const EventsPage = () => {
       <div className="flex-grow py-12 bg-temple-cream">
         <div className="temple-container">
           <h1 className="section-title">Events</h1>
-          <p style={{ textAlign: "center", color: "back" }} >
+          <p className="text-lg mb-6 text-center" >
            <b>Stay updated with upcoming religious events, festivals, and celebrations at Jalumuru Hill temples.</b> 
           </p><br />
 

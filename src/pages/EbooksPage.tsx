@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { AlignCenter, Download } from "lucide-react";
 import axios from "axios";
 
 const EbooksPage = () => {
@@ -28,10 +28,9 @@ const EbooksPage = () => {
       <div className="flex-grow py-8 bg-temple-cream">
         <div className="temple-container">
           <h1 className="section-title">eBooks</h1>
-          <p className="text-lg mb-6">
-            Download eBooks about temple history, Telugu mythology, and spiritual texts.
-          </p>
-
+          <p className="text-lg mb-6 text-center">
+  <b>Download eBooks about temple history, Telugu mythology, and spiritual texts.</b>
+</p>
           {/* Conditional Rendering: Show loader or book cards */}
           {loading ? (
             <div className="text-center text-gray-600">Loading eBooks...</div>
