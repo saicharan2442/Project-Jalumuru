@@ -1,9 +1,34 @@
-
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import axios from "axios";
 
 const DeveloperPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [statusMessage, setStatusMessage] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatusMessage(null);
+    try {
+      const response = await axios.post("http://localhost:5000/api/contact", formData);
+      setStatusMessage({ type: "success", text: response.data.message });
+      setFormData({ name: "", email: "", subject: "", message: "" }); // Clear form
+    } catch (error) {
+      setStatusMessage({ type: "error", text: error.response?.data?.message || "Something went wrong." });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -16,60 +41,85 @@ const DeveloperPage = () => {
           <div className="bg-white rounded-lg shadow-md p-8 border border-gold-light/30">
             <div className="text-center mb-8">
               <h2 className="font-playfair text-2xl font-semibold text-gold-dark mb-4">About the Developer</h2>
-              
               <img 
-  src="/src/pages/images/sadas.png" 
-  alt="Developer" 
-  style={{ 
-    display: "block", 
-    margin: "0 auto", 
-    width: "180px", 
-    height: "180px", 
-    borderRadius: "8px" 
-  }}
-/>
-
+                src="/src/pages/images/sadas.png" 
+                alt="Developer" 
+                style={{ 
+                  display: "block", 
+                  margin: "0 auto", 
+                  width: "180px", 
+                  height: "180px", 
+                  borderRadius: "8px" 
+                }}
+              />
               <p className="max-w-2xl mx-auto">
-               <b> saicharan_sada<br />AI & Data science Engineer </b><br /><br />
-                 This website was designed and developed with care to showcase the spiritual and cultural richness of Jalumuru Hill and its temples. 
+                <b> saicharan_sada<br />AI & Data science Engineer </b><br /><br />
+                This website was designed and developed with care to showcase the spiritual and cultural richness of Jalumuru Hill and its temples. 
                 Using modern web technologies, we've created an immersive digital experience that honors the divine heritage of this sacred place.
               </p>
             </div>
-            
+
             <div className="mt-8 p-6 bg-temple-cream rounded-md">
               <h3 className="font-playfair text-xl font-semibold text-gold-dark mb-4 text-center">Contact the Development Team</h3>
-              <form className="space-y-4">
+              
+              {statusMessage && (
+                <div
+                  className={`text-center mb-4 p-2 rounded-md font-medium ${
+                    statusMessage.type === "success" ? "text-green-700 bg-green-100" : "text-red-700 bg-red-100"
+                  }`}
+                >
+                  {statusMessage.text}
+                </div>
+              )}
+
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-1">Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full p-2 border border-gold-light/30 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-light" 
+                    <input
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full p-2 border border-gold-light/30 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-light"
                       placeholder="Your Name"
+                      required
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1">Email</label>
-                    <input 
-                      type="email" 
-                      className="w-full p-2 border border-gold-light/30 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-light" 
+                    <input
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full p-2 border border-gold-light/30 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-light"
                       placeholder="Your Email"
+                      required
                     />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">Subject</label>
-                  <input 
-                    type="text" 
-                    className="w-full p-2 border border-gold-light/30 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-light" 
+                  <input
+                    name="subject"
+                    type="text"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full p-2 border border-gold-light/30 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-light"
                     placeholder="Subject"
+                    required
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">Message</label>
-                  <textarea 
-                    className="w-full p-2 border border-gold-light/30 rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-gold-light" 
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full p-2 border border-gold-light/30 rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-gold-light"
                     placeholder="Your Message"
+                    required
                   ></textarea>
                 </div>
                 <div className="text-center">
