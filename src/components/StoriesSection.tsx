@@ -9,21 +9,21 @@ import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 const stories = [
   {
     id: 1,
+    title: "The Story of Jalumuru Hill",
+    summary: "The ancient legend behind the sacred Jalumuru Hill and why it became a divine destination for devotees.",
+    image: "https://blogger.googleusercontent.com/img/a/AVvXsEiXxoE5c4sTGTgDFaeTD8cMqUfz9Ss4OkGkO5p1BkQPxHkwiVSmyjivHVTf3sbzaNrpOnLJ-xq8Bx6FlUgh1YhXdRX9GV_qhfwOlpcGRzhasDvFAbzgOQIDfsH2K2iJ0Cr-Uw5rr0axrupT4zgu2NOakcG_9HwvMPqkx9ok-vd7WgFk3BiWufAGEwb1Eh0=w1684-h1069-p-k-no-nu"
+  },
+  {
+    id: 2,
     title: "The Birth of Lord Vinayaka",
     summary: "The fascinating story of how Goddess Parvati created Lord Ganesha and how he got his elephant head.",
     image: "https://imgs.search.brave.com/CUyTcIE35p6uQPhZvvoZsrmIWDv1iNzB2HrLUSo0JrY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zcmlj/aGFudHMuaW4vd3At/Y29udGVudC91cGxv/YWRzLzIwMjMvMDcv/U3JpY2hhbnRzLmlu/LUZlYXR1cmVkLUlt/YWdlczEtMTAyNHg1/NzYuanBn"
   },
   {
-    id: 2,
+    id: 3,
     title: "Lord Hanuman and the Sanjeevani Mountain",
     summary: "How Lord Hanuman carried an entire mountain to save Lord Lakshmana's life during the great war.",
     image: "https://imgs.search.brave.com/LH1d5Zz0tj9TmbKkrgY_non_ybg5Y-f81obbzeDVgjc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9oYW51/bWFuY2hhbGlzYXMu/aW4vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjQvMTAvNjkwMWFi/Y2UwNWE2NWY4MTU2/OTQwZjBlZGYwNjAz/YjkuanBn"
-  },
-  {
-    id: 3,
-    title: "The Story of Jalumuru Hill",
-    summary: "The ancient legend behind the sacred Jalumuru Hill and why it became a divine destination for devotees.",
-    image: "https://blogger.googleusercontent.com/img/a/AVvXsEiXxoE5c4sTGTgDFaeTD8cMqUfz9Ss4OkGkO5p1BkQPxHkwiVSmyjivHVTf3sbzaNrpOnLJ-xq8Bx6FlUgh1YhXdRX9GV_qhfwOlpcGRzhasDvFAbzgOQIDfsH2K2iJ0Cr-Uw5rr0axrupT4zgu2NOakcG_9HwvMPqkx9ok-vd7WgFk3BiWufAGEwb1Eh0=w1684-h1069-p-k-no-nu"
   },
   {
     id: 4,

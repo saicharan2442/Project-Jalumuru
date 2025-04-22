@@ -75,7 +75,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="mr-2 h-5 w-5 text-gold-light" />
-                <span>Jalumuru Hill, Sri vara siddhi vinayaka kshethram, Andhra Pradesh, India</span>
+                <span>Jalumuru Hill, Sri vara siddhi vinayaka kshethram, Srikakulam, Andhra Pradesh, India</span>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-gold-light" />
