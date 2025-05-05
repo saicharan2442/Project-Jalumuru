@@ -83,14 +83,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5 text-gold-light" />
-                <span>jalumuruhill@oakon.com</span>
+                <span>jalumuruhill@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
         
         <div className="mt-12 pt-4 border-t border-gold-light/30 text-center text-sm">
-          <p>© {new Date().getFullYear()} Jalumuru Hill Trust. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Jalumuru Hill. All rights reserved.</p>
         </div>
       </div>
     </footer>

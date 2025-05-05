@@ -24,9 +24,12 @@ const Hero = () => {
             Discover the Divine Bliss of Jalumuru Hill
           </h1>
           <p className="text-lg md:text-xl mb-8 max-w-prose">
+          Sri vara siddhi vinayaka kshethram          </p>
+          <p className="text-lg md:text-xl mb-8 max-w-prose">
             Experience spiritual tranquility and cultural heritage at one of India's most sacred temple sites.
           </p>
-          <p><b>NOTE : </b> This website is under Development Stage for Any Temple Donation <br /> Contact to <b>+91 8374104423</b> </p><br />
+          <p><b>NOTE : </b> This website is under Development Stage for Any Temple Donation <br /> Contact to <a href="tel:+918374104423"><b>+91 8374104423</b></a></p><br />
+
           <Link to="/temples">
             <Button className="bg-gold hover:bg-gold-dark text-foreground font-semibold px-6 py-6 text-lg rounded-md transition-all duration-300 shadow-lg hover:shadow-xl">
               Explore Temples

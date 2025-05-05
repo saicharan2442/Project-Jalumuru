@@ -15,6 +15,37 @@ type Donor = {
   donated: string;
 };
 
+const numberToWords = (num: number): string => {
+  const a = [
+    "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+    "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
+    "Seventeen", "Eighteen", "Nineteen"
+  ];
+  const b = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+  if (num === 0) return "Zero";
+  if (num < 0) return "Minus " + numberToWords(Math.abs(num));
+
+  let words = "";
+
+  const numberToWord = (n: number): string => {
+    return n < 20 ? a[n] : b[Math.floor(n / 10)] + (n % 10 !== 0 ? " " + a[n % 10] : "");
+  };
+
+  const crore = Math.floor(num / 10000000);
+  const lakh = Math.floor((num % 10000000) / 100000);
+  const thousand = Math.floor((num % 100000) / 1000);
+  const hundred = Math.floor((num % 1000) / 100);
+  const remainder = num % 100;
+
+  if (crore) words += numberToWords(crore) + " Crore ";
+  if (lakh) words += numberToWords(lakh) + " Lakh ";
+  if (thousand) words += numberToWords(thousand) + " Thousand ";
+  if (hundred) words += a[hundred] + " Hundred ";
+  if (remainder) words += (words ? "and " : "") + numberToWord(remainder);
+
+  return words.trim();
+};
+
 const DonorSection: React.FC = () => {
   const [donors, setDonors] = useState<Donor[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,7 +91,7 @@ const DonorSection: React.FC = () => {
         <div className="temple-container px-4 sm:px-8">
           <h1 className="text-3xl font-bold text-yellow-800 text-center mb-2">All Donors</h1>
           <h2 className="text-lg text-center text-yellow-700 mb-4 font-medium">
-          Honoring Our Generous Donors to Jalumuru Hill temples. Who donates ₹ 500+ /-
+            Honoring Our Generous Donors to Jalumuru Hill temples. Who donate ₹ 500+ /-
           </h2>
 
           <div className="flex justify-center mb-8">
@@ -81,34 +112,30 @@ const DonorSection: React.FC = () => {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
               {filteredDonors.map((donor) => (
                 <div key={donor.id}>
-                  <Card className="bg-yellow-100 rounded-2xl border-2 border-yellow-300 transition-transform transform hover:scale-105 hover:shadow-yellow-400/60 hover:shadow-2xl">
-                    <CardContent className="p-4">
-                      <h2 className="text-xl font-bold text-yellow-700">{donor.Name}</h2>
-                      <p className="text-sm text-gray-700">
-                        {donor.village}, {donor.district}
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        {donor.email} | {donor.phone_number}
-                      </p>
-                      <div className="flex items-center justify-between mt-2">
-                        <p className="text-md font-semibold text-green-700">
-                          Donated: ₹{donor.donated}
+                  <Card className="bg-yellow-100 rounded-xl border border-yellow-300 overflow-hidden h-[50px]">
+                    <CardContent className="flex items-center justify-between px-4 py-2 h-[50px]">
+                      <div className="flex flex-col overflow-hidden">
+                        <p className="text-sm font-semibold text-yellow-800 truncate">
+                          {donor.Name}
                         </p>
-                        <button
-                          onClick={() => handleDownload(donor.id, donor.Name)}
-                          className="text-yellow-700 hover:text-yellow-900 transition"
-                          title="Download Receipt"
-                        >
-                          <FaDownload size={20} />
-                        </button>
+                        <p className="text-xs text-gray-600 truncate">
+                          ₹{donor.donated}
+                        </p>
                       </div>
+                      <button
+                        onClick={() => handleDownload(donor.id, donor.Name)}
+                        className="text-yellow-700 hover:text-yellow-900"
+                        title="Download Receipt"
+                      >
+                        <FaDownload size={16} />
+                      </button>
                     </CardContent>
                   </Card>
 
-                  {/* Hidden Receipt Preview */}
+                  {/* Hidden Receipt */}
                   <div
                     ref={(el) => (receiptRefs.current[donor.id] = el)}
                     style={{
@@ -126,8 +153,8 @@ const DonorSection: React.FC = () => {
                     <div
                       style={{
                         position: "absolute",
-                        top: "160px",
-                        left: "600px",
+                        top: "120px",
+                        left: "580px",
                         fontSize: "24px",
                         color: "#fff",
                         lineHeight: "1.8",
@@ -137,15 +164,15 @@ const DonorSection: React.FC = () => {
                       <p><strong>Phone:</strong> {donor.phone_number}</p>
                       <p><strong>Email:</strong> {donor.email}</p>
                       <p><strong>Address:</strong> {donor.village}, {donor.district}</p>
-                      <p
-                        style={{
-                          marginTop: "50px",
-                          fontSize: "30px",
-                          fontWeight: "bold",
-                          color: "#fff",
-                        }}
-                      >
+                      <p><strong>Date of Download:</strong> {new Date().toLocaleDateString()}</p>
+                      <p><strong>Time of Download:</strong> {new Date().toLocaleTimeString()}</p>
+
+
+                      <p style={{ marginTop: "50px", fontSize: "30px", fontWeight: "bold" }}>
                         Donated Amount: ₹{donor.donated}
+                      </p>
+                      <p style={{ fontSize: "20px", marginTop: "10px", fontStyle: "italic" }}>
+                        ({numberToWords(parseInt(donor.donated))} Rupees only)
                       </p>
                     </div>
                   </div>

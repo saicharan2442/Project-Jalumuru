@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import axios from "axios";
 
 const DeveloperPage = () => {
   const [formData, setFormData] = useState({
@@ -11,46 +10,24 @@ const DeveloperPage = () => {
     message: "",
   });
 
-  const [statusMessage, setStatusMessage] = useState(null);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatusMessage(null);
-    try {
-      const response = await axios.post("http://localhost:5000/api/contact", formData);
-      setStatusMessage({ type: "success", text: response.data.message });
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (error) {
-      setStatusMessage({
-        type: "error",
-        text: error.response?.data?.message || "Something went wrong. Please try again later.",
-      });
-    }
+  const handleEmailClick = () => {
+    const { name, email, subject, message } = formData;
+
+    // Construct the body of the email
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+    const mailtoLink = `mailto:fastrack2442@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+    // Trigger the local mail client
+    window.location.href = mailtoLink;
   };
 
   return (
     <div className="min-h-screen flex flex-col relative">
       <Navbar />
-
-      {/* Alert Box as a floating card */}
-      {statusMessage?.type === "error" && (
-        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-xl shadow-lg max-w-md text-center">
-            <p className="font-semibold mb-1">Error</p>
-            <p>{statusMessage.text}</p>
-            <button
-              onClick={() => setStatusMessage(null)}
-              className="mt-3 px-4 py-1 bg-red-200 hover:bg-red-300 text-red-800 rounded-md text-sm font-medium transition-all"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
 
       <div className="flex-grow py-12 bg-temple-cream">
         <div className="temple-container">
@@ -73,9 +50,8 @@ const DeveloperPage = () => {
                 }}
               />
               <p className="max-w-2xl mx-auto">
-                <b> saicharan_sada<br />AI & Data science Engineer </b><br /><br />
+                <b>saicharan_sada<br />AI & Data Science Engineer</b><br /><br />
                 This website was designed and developed with care to showcase the spiritual and cultural richness of Jalumuru Hill and its temples.
-                Using modern web technologies, we've created an immersive digital experience that honors the divine heritage of this sacred place.
               </p>
             </div>
 
@@ -84,14 +60,7 @@ const DeveloperPage = () => {
                 Contact the Development Team
               </h3>
 
-              {/* Inline success message */}
-              {statusMessage?.type === "success" && (
-                <div className="text-center mb-4 p-3 bg-green-100 text-green-800 font-medium rounded-md shadow">
-                  {statusMessage.text}
-                </div>
-              )}
-
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-1">Name</label>
@@ -143,10 +112,11 @@ const DeveloperPage = () => {
                 </div>
                 <div className="text-center">
                   <button
-                    type="submit"
+                    type="button"
+                    onClick={handleEmailClick}
                     className="bg-gold hover:bg-gold-dark text-foreground font-semibold px-6 py-2 rounded-md transition-all duration-300 shadow-md hover:shadow-lg"
                   >
-                    Send Message
+                    Send Email
                   </button>
                 </div>
               </form>
@@ -154,6 +124,7 @@ const DeveloperPage = () => {
           </div>
         </div>
       </div>
+
       <Footer />
     </div>
   );

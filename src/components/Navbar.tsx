@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import {
   Menu,
   X,
-  Search,
   Facebook,
   Instagram,
   Youtube,
+  ChevronDown,
 } from "lucide-react";
 
 const navItems = [
@@ -18,33 +17,28 @@ const navItems = [
   { name: "Ebooks", path: "/ebooks" },
   { name: "Trust Licence", path: "/trust-licence" },
   { name: "Developer", path: "/developer" },
+  { name: "Contact Us", path: "/contact" },
 ];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim() !== "") {
-      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
-      setSearchQuery("");
-      setIsMenuOpen(false);
-    }
-  };
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   return (
     <nav className="bg-temple-white border-b border-gold-light/30 sticky top-0 z-50 shadow-sm">
       <div className="temple-container">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <span className="text-2xl font-playfair font-bold text-gold-dark">
-              Jalumuru Hill
-            </span>
+          <Link to="/" className="flex items-center h-full">
+            <img
+              src="/logo.png"
+              alt="Jalumuru Hill Logo"
+              className="h-full max-h-16 object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -54,41 +48,66 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-          </div>
 
-          {/* Search + Social Icons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <form onSubmit={handleSearchSubmit} className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search..."
-                className="border border-gold-light rounded-full px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-gold-light transition-all w-36 focus:w-56"
-              />
+            {/* Optional Dropdown */}
+            <div className="relative">
               <button
-                type="submit"
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gold-dark hover:text-gold"
+                onClick={toggleDropdown}
+                className="flex items-center space-x-2 text-gold-dark hover:text-gold transition"
               >
-                <Search size={18} />
+                <span>Explore</span>
+                <ChevronDown size={18} />
               </button>
-            </form>
-            <Button variant="ghost" size="icon" className="text-gold-dark hover:text-gold hover:bg-temple-cream">
-              <Facebook size={20} />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-gold-dark hover:text-gold hover:bg-temple-cream">
-              <Instagram size={20} />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-gold-dark hover:text-gold hover:bg-temple-cream">
-              <Youtube size={20} />
-            </Button>
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gold-light rounded-lg shadow-lg z-50">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className="block px-4 py-2 text-sm text-gold-dark hover:bg-temple-cream hover:text-gold rounded-md"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Social Icons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <a
+              href="https://www.facebook.com/YourPage"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-dark hover:text-gold hover:bg-temple-cream p-2 rounded-full"
+            >
+              <Facebook size={20} />
+            </a>
+            <a
+              href="https://www.instagram.com/YourProfile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-dark hover:text-gold hover:bg-temple-cream p-2 rounded-full"
+            >
+              <Instagram size={20} />
+            </a>
+            <a
+              href="https://www.youtube.com/YourChannel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-dark hover:text-gold hover:bg-temple-cream p-2 rounded-full"
+            >
+              <Youtube size={20} />
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
-            <Button variant="ghost" size="icon" onClick={toggleMenu}>
+            <button onClick={toggleMenu} className="p-2">
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
+            </button>
           </div>
         </div>
 
@@ -106,31 +125,31 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <form onSubmit={handleSearchSubmit} className="px-4 pt-2">
-                <div className="flex items-center border border-gold-light rounded-full px-3 py-1">
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search..."
-                    className="w-full text-sm outline-none bg-transparent"
-                  />
-                  <button type="submit" className="text-gold-dark hover:text-gold">
-                    <Search size={18} />
-                  </button>
-                </div>
-              </form>
-
               <div className="flex justify-center space-x-4 pt-4 border-t border-gold-light/30 mt-2">
-                <Button variant="ghost" size="icon" className="text-gold-dark hover:text-gold hover:bg-temple-cream">
+                <a
+                  href="https://www.facebook.com/YourPage"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold-dark hover:text-gold hover:bg-temple-cream p-2 rounded-full"
+                >
                   <Facebook size={20} />
-                </Button>
-                <Button variant="ghost" size="icon" className="text-gold-dark hover:text-gold hover:bg-temple-cream">
+                </a>
+                <a
+                  href="https://www.instagram.com/YourProfile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold-dark hover:text-gold hover:bg-temple-cream p-2 rounded-full"
+                >
                   <Instagram size={20} />
-                </Button>
-                <Button variant="ghost" size="icon" className="text-gold-dark hover:text-gold hover:bg-temple-cream">
+                </a>
+                <a
+                  href="https://www.youtube.com/YourChannel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold-dark hover:text-gold hover:bg-temple-cream p-2 rounded-full"
+                >
                   <Youtube size={20} />
-                </Button>
+                </a>
               </div>
             </div>
           </div>
