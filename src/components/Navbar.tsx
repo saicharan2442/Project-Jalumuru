@@ -16,8 +16,8 @@ const navItems = [
   { name: "Events", path: "/events" },
   { name: "Ebooks", path: "/ebooks" },
   { name: "Trust Licence", path: "/trust-licence" },
-  { name: "Developer", path: "/developer" },
   { name: "Contact Us", path: "/contact" },
+  { name: "Developer", path: "/developer" },
 ];
 
 const Navbar = () => {
