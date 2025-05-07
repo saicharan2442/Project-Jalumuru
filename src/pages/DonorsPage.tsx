@@ -13,23 +13,21 @@ type Donor = {
   email: string;
   phone_number: string;
   donated: string;
+  donated_at: string;
 };
 
 const numberToWords = (num: number): string => {
-  const a = [
-    "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+  const a = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
     "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
-    "Seventeen", "Eighteen", "Nineteen"
-  ];
+    "Seventeen", "Eighteen", "Nineteen"];
   const b = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
   if (num === 0) return "Zero";
   if (num < 0) return "Minus " + numberToWords(Math.abs(num));
 
   let words = "";
 
-  const numberToWord = (n: number): string => {
-    return n < 20 ? a[n] : b[Math.floor(n / 10)] + (n % 10 !== 0 ? " " + a[n % 10] : "");
-  };
+  const numberToWord = (n: number): string =>
+    n < 20 ? a[n] : b[Math.floor(n / 10)] + (n % 10 !== 0 ? " " + a[n % 10] : "");
 
   const crore = Math.floor(num / 10000000);
   const lakh = Math.floor((num % 10000000) / 100000);
@@ -79,6 +77,14 @@ const DonorSection: React.FC = () => {
     }
   };
 
+  const formatDate = (dateStr: string) => {
+    return new Date(dateStr).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
   const filteredDonors = donors.filter((donor) =>
     donor.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     donor.phone_number.includes(searchTerm)
@@ -115,11 +121,14 @@ const DonorSection: React.FC = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
               {filteredDonors.map((donor) => (
                 <div key={donor.id}>
-                  <Card className="bg-yellow-100 rounded-xl border border-yellow-300 overflow-hidden h-[50px]">
-                    <CardContent className="flex items-center justify-between px-4 py-2 h-[50px]">
+                  <Card className="bg-yellow-100 rounded-xl border border-yellow-300 overflow-hidden h-[70px]">
+                    <CardContent className="flex items-center justify-between px-4 py-2 h-[70px]">
                       <div className="flex flex-col overflow-hidden">
                         <p className="text-sm font-semibold text-yellow-800 truncate">
                           {donor.Name}
+                        </p>
+                        <p className="text-xs text-yellow-700">
+                          Donated on {formatDate(donor.donated_at)}
                         </p>
                         <p className="text-xs text-gray-600 truncate">
                           ₹{donor.donated}
@@ -153,7 +162,7 @@ const DonorSection: React.FC = () => {
                     <div
                       style={{
                         position: "absolute",
-                        top: "120px",
+                        top: "80px",
                         left: "580px",
                         fontSize: "24px",
                         color: "#fff",
@@ -164,10 +173,9 @@ const DonorSection: React.FC = () => {
                       <p><strong>Phone:</strong> {donor.phone_number}</p>
                       <p><strong>Email:</strong> {donor.email}</p>
                       <p><strong>Address:</strong> {donor.village}, {donor.district}</p>
-                      <p><strong>Date of Download:</strong> {new Date().toLocaleDateString()}</p>
+                      <p><strong>Donated On:</strong> {formatDate(donor.donated_at)}</p>
+                      <p><strong>Date of Download:</strong> {formatDate(new Date().toISOString())}</p>
                       <p><strong>Time of Download:</strong> {new Date().toLocaleTimeString()}</p>
-
-
                       <p style={{ marginTop: "50px", fontSize: "30px", fontWeight: "bold" }}>
                         Donated Amount: ₹{donor.donated}
                       </p>
