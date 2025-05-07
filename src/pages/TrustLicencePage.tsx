@@ -18,7 +18,7 @@ const TrustLicencePage = () => {
             
             {/* A4 Size Image with Mobile Responsiveness */}
             <img
-              src="/src/pages/images/fake.jpg" 
+              src="/src/pages/images/fake.png" 
               alt="Trust Licence Document"
               className="w-full max-w-[210mm] h-auto md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] shadow-lg rounded-md"
             />

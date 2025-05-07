@@ -62,19 +62,24 @@ def get_ebooks():
 def get_events():
     db = get_db_connection()
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM events ORDER BY id DESC")
+    cursor.execute("SELECT id, eventname, event_date, event_temple, discription FROM events ORDER BY id DESC")
     rows = cursor.fetchall()
-    col_names = [desc[0] for desc in cursor.description]
-    
-    data = []
+
+    events = []
     for row in rows:
-        event = dict(zip(col_names, row))
-        event["event_date"] = format_datetime(event.get("event_date"))
-        data.append(event)
+        event = {
+            "id": row[0],
+            "eventname": row[1],
+            "event_date": row[2],  # It's already a varchar
+            "event_temple": row[3],
+            "discription": row[4]
+        }
+        events.append(event)
 
     cursor.close()
     db.close()
-    return jsonify(data)
+    return jsonify(events)
+
 
 @app.route('/temples', methods=['GET'])
 def get_temples():
