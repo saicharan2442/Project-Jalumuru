@@ -20,9 +20,14 @@ const DonorSection: React.FC = () => {
   const fetchDonors = async () => {
     try {
       const response = await fetch("http://localhost:5000/donars");
-      const data = await response.json();
-      const latestNine = data.slice(0, 9); // Show only latest 9
-      setDonors(latestNine);
+      const data: Donor[] = await response.json();
+
+      const filtered = data
+        .filter((donor) => parseInt(donor.donated, 10) >= 5000)
+        .sort((a, b) => parseInt(b.donated, 10) - parseInt(a.donated, 10))
+        .slice(0, 9);
+
+      setDonors(filtered);
     } catch (error) {
       console.error("Error fetching donors:", error);
     }
@@ -37,7 +42,9 @@ const DonorSection: React.FC = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-yellow-800">Latest Donors</h2>
+        <h2 className="text-2xl font-bold text-yellow-800">
+          Top Donors (దాతలు)
+        </h2>
         <Button
           onClick={() => navigate("/donors")}
           className="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg px-4 py-2 transition-all"
@@ -61,7 +68,7 @@ const DonorSection: React.FC = () => {
                 {donor.email} | {donor.phone_number}
               </p>
               <p className="text-md font-semibold text-green-700 mt-3">
-                Donated: {donor.donated}
+                Donated: ₹{donor.donated}
               </p>
             </CardContent>
           </Card>
